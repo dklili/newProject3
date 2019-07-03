@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row'
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
 
 
 const NavbarBrand = Navbar.Brand
@@ -18,6 +17,7 @@ export const NavbarBrandWrapper = styled(NavbarBrand)`
     padding-right: 150px;
     height: 40px;
     font-size:25px;
+    cursor: pointer;
 `
 export const NavbarWrapper = styled(Navbar)`
     width: 100%;
@@ -36,10 +36,4 @@ export const NavLinkWrapper = styled(NavLink)`
 export const NavLinkWrapperRight = styled(NavLink)`
     font-size:18px;
     margin-right: 50px;
-`
-
-export const RouterLink = styled(Link)`
-    :hover{
-        text-decoration:none;
-    }
 `

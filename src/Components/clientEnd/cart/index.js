@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import EmptyCart from './EmptyCart';
+import { connect } from 'react-redux';
+// import EmptyCart from './EmptyCart';
+import Cart from './Cart'
 
-class ClientCart extends Component {
+
+class DefineCar extends Component {
     render() {
         return (
-            <EmptyCart />
+            <Cart />
         )
     }
 }
+const mapStateToProps = (state, ownProps) => ({
+    product: state.menuReducer.product
+});
 
+const ClientCart = connect(
+    mapStateToProps
+)(DefineCar)
 export default ClientCart;

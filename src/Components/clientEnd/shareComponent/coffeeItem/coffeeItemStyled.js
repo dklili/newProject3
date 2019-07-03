@@ -9,7 +9,7 @@ export const SubTitle = styled.h2`
 export const CoffeeItem = styled.div`
 height: 250px;
 width:100%;
-background-image: url(${props => props.coffeeImg});
+background-image: url('${props => props.coffeeImg}');
 background-repeat:no-repeat;
 background-size: contain;
 background-position:center;

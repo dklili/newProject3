@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 //component import part
@@ -14,16 +13,15 @@ import ClientFooter from '../shareComponent/clientFooter/index';
 import {
     LoginFormWrapper, LoginTitle, SubmitBtn, FormControl,
     FormText, BackgroundWrapper
-} from './loginStyled';
+} from './singupStyled';
 
-function Login({ email, password, message, success, handleInputValue, handleSubmit }) {
+function Singup({ success, message, email, password, passwordValid, handleInputValue, handleCreateNewUser }) {
     if (success === true) {
         return (
-            <Redirect to="/" />
+            <Redirect to="/login" />
         )
     }
     return (
-
         <Container fluid>
             <Row>
                 <ClientMenuBar></ClientMenuBar>
@@ -32,7 +30,7 @@ function Login({ email, password, message, success, handleInputValue, handleSubm
                 <Col md={6}>
                     <LoginFormWrapper>
                         <LoginTitle pTop={'20px'} size={'30px'}>
-                            Welcome Back To Our Coffee Shop
+                            Thanks for Register!
                         </LoginTitle>
                         <LoginTitle pTop={'10px'} size={'15px'}>
                             Enter your detail below here
@@ -42,31 +40,32 @@ function Login({ email, password, message, success, handleInputValue, handleSubm
                         </LoginTitle>
                         <Form>
                             <Form.Group controlId="formBasicEmail">
-                                <FormControl type="email" placeholder="Enter email" name='email' onChange={handleInputValue} />
+                                <FormControl name='email' type="email" placeholder="Enter email"
+                                    onChange={handleInputValue} />
                                 <Row>
-                                    <FormText className="text-muted" >
+                                    <FormText className="text-muted">
                                         We'll never share your email with anyone else.
                                 </FormText>
                                 </Row>
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
-                                <FormControl type="password" placeholder="Password" name='password' onChange={handleInputValue} />
+                                <FormControl name='password' type="password" placeholder="Password"
+                                    onChange={handleInputValue} />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPasswordValid">
+                                <FormControl name='passwordValid' type="password" placeholder="Please Enter Your Password Again"
+                                    onChange={handleInputValue} />
                             </Form.Group>
                             <Form.Group controlId="formBasicChecbox">
                             </Form.Group>
                             <Row>
-                                <SubmitBtn variant="primary" onClick={() => handleSubmit(email, password)}>
-                                    Login
+                                <SubmitBtn variant="primary"
+                                    onClick={() => handleCreateNewUser(email, password, passwordValid)}
+                                >
+                                    signUp
                                 </SubmitBtn>
                             </Row>
-                            <Link to='/signup'>
-                                <Row>
-                                    <SubmitBtn variant="primary" type="submit">
-                                        Without an account? Signup
-                                    </SubmitBtn>
-                                </Row>
-                            </Link>
                         </Form>
                     </LoginFormWrapper>
                 </Col>
@@ -82,4 +81,4 @@ function Login({ email, password, message, success, handleInputValue, handleSubm
     )
 }
 
-export default Login;
+export default Singup;

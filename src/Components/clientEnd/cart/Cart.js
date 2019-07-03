@@ -2,17 +2,19 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import AdminMenuBar from '../shareComponent/menuBar/index';
 
-import { ReadyBtn, TalbeHeader, TableData } from './bookingManagementStyled';
+//component import part
+import ClientMenuBar from '../shareComponent/clientMenu/index';
+import ClientFooter from '../shareComponent/clientFooter/index';
+
+import { TalbeHeader, TableData } from './cartStyled';
 
 
-function BookingManagement({ booking, handleStatusChange }) {
+function Cart({ booking, handleStatusChange }) {
     return (
         <Container fluid>
             <Row>
-                <AdminMenuBar></AdminMenuBar>
+                <ClientMenuBar></ClientMenuBar>
             </Row>
             <Row>
                 <Table striped bordered hover size="md">
@@ -26,7 +28,15 @@ function BookingManagement({ booking, handleStatusChange }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {booking.map(items => {
+                        <tr >
+                            <TableData>12:30:23</TableData>
+                            <TableData>some coffee</TableData>
+                            <TableData>0444444444</TableData>
+                            <TableData>
+                                panding
+                            </TableData>
+                        </tr>
+                        {/* {booking.map(items => {
                             if (items.status === "Panding") {
                                 return (
                                     <tr key={items.id}>
@@ -66,13 +76,16 @@ function BookingManagement({ booking, handleStatusChange }) {
                                     </tr>
                                 )
                             )
-                        })}
+                        })} */}
                     </tbody>
                 </Table>
+            </Row>
+            <Row>
+                <ClientFooter></ClientFooter>
             </Row>
         </Container>
 
     )
 }
 
-export default BookingManagement;
+export default Cart;
