@@ -1,38 +1,31 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
-import { NavbarWrapper, NavWrapper, RouterLink, NavbarBrandWrapper, NavLinkWrapper } from './menuBarStyled';
+import { NavbarWrapper, NavWrapper, NavbarBrandWrapper, NavLinkWrapper } from './menuBarStyled';
+import { withRouter } from 'react-router-dom';
 
 
-function AdminMenuBar() {
+function AdminMenuBar(props) {
+    const changeAddress = (e, address) => {
+        e.preventDefault();
+        props.history.push(address);
+    }
     return (
         <NavbarWrapper collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <RouterLink to="/admin">
-                <NavbarBrandWrapper  >Coffee Shop</NavbarBrandWrapper>
-            </RouterLink>
+            <NavbarBrandWrapper onClick={(e) => changeAddress(e, '/admin')} >Coffee Shop</NavbarBrandWrapper>
             <NavbarWrapper.Toggle aria-controls="responsive-navbar-nav" />
             <NavbarWrapper.Collapse id="responsive-navbar-nav">
                 <NavWrapper className="mr-auto">
-                    <RouterLink to="/admin">
-                        <NavLinkWrapper href="/admin">Home</NavLinkWrapper>
-                    </RouterLink>
-                    <RouterLink to="/admin/booking">
-                        <NavLinkWrapper href="/admin/booking">Booking</NavLinkWrapper>
-                    </RouterLink>
-                    <RouterLink to="/admin/customer">
-                        <NavLinkWrapper href="/admin/customer">Customer Management</NavLinkWrapper>
-                    </RouterLink>
-                    <RouterLink to="/admin/coffee">
-                        <NavLinkWrapper href="/admin/coffee">Coffee Management</NavLinkWrapper>
-                    </RouterLink>
+                    <NavLinkWrapper onClick={(e) => changeAddress(e, '/admin')}>Home</NavLinkWrapper>
+                    <NavLinkWrapper onClick={(e) => changeAddress(e, '/admin/booking')}>Booking</NavLinkWrapper>
+                    <NavLinkWrapper onClick={(e) => changeAddress(e, '/admin/customer')}>Customer Management</NavLinkWrapper>
+                    <NavLinkWrapper onClick={(e) => changeAddress(e, '/admin/coffee')}>Coffee Management</NavLinkWrapper>
                 </NavWrapper>
                 <NavWrapper>
-                    <RouterLink to="/admin/login">
-                        <Nav.Link href="/admin/login">Logout</Nav.Link>
-                    </RouterLink>
+                    <Nav.Link onClick={(e) => changeAddress(e, '/admin/login')}>Logout</Nav.Link>
                 </NavWrapper>
             </NavbarWrapper.Collapse>
         </NavbarWrapper>
     )
 }
 
-export default AdminMenuBar;
+export default withRouter(AdminMenuBar);

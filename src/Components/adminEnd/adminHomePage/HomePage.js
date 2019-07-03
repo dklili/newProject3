@@ -6,7 +6,10 @@ import Col from 'react-bootstrap/Col';
 import AdminMenuBar from '../shareComponent/menuBar/index';
 
 
-import { SectionWrapper, BookingIcon, CommonTitle, CommonDescribe, IcoWrapper, CustomerIcon, CoffeeIcon, RouterLink } from './homePageStyled';
+import {
+    SectionWrapper, BookingIcon, CommonTitle, CommonDescribe,
+    IcoWrapper, CustomerIcon, CoffeeIcon, RouterLink
+} from './homePageStyled';
 
 
 function Homepage() {

@@ -16,6 +16,7 @@ import ClentAboutUs from './Components/clientEnd/about/index';
 import ClientContact from './Components/clientEnd/contact/index';
 import ClientLogin from './Components/clientEnd/logIn/index';
 import ClientCart from './Components/clientEnd/cart/index';
+import ClientSingup from './Components/clientEnd/singup/index';
 
 class HandApp extends Component {
   render() {
@@ -44,7 +45,8 @@ class HandApp extends Component {
                 <Route path='/aboutus' component={ClentAboutUs} />
                 <Route path='/contact' component={ClientContact} />
                 <Route path='/login' component={ClientLogin} />
-                <Route path='/cart' component={ClientCart}/>
+                <Route path='/cart' component={ClientCart} />
+                <Route path='/signup' component={ClientSingup} />
               </div>
             )}
           />

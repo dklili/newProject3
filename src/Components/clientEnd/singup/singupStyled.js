@@ -16,9 +16,9 @@ export const LoginFormWrapper = styled.div`
 export const LoginTitle = styled.h2`
     padding-top:${props => props.pTop};
     font-size:${props => props.size};
+    color:${props => props.Acolor};
     font-family:monospace ;
     text-align:center;
-    color:${props => props.Acolor};
 `
 export const SubmitBtn = styled(Button)`
     margin:auto;
