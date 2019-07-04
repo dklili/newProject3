@@ -55,7 +55,7 @@ function HomePage() {
                 </Col>
             </Row>
             <Row>
-                <ShareBlackBtn btnTitle={'See Menu'} btnLink={'/menu'} />
+                <ShareBlackBtn btnTitle={'See Menu'} btnLink={'/menu'} btnMb={'80px'} />
             </Row>
             <Row>
                 <SecondBackgroundWrapper>
@@ -73,7 +73,7 @@ function HomePage() {
                         from the crowd.
                     </SubTitle>
                     <Row>
-                        <ShareBlackBtn btnTitle={'About Us'} btnLink={'/aboutus'} />
+                        <ShareBlackBtn btnTitle={'About Us'} btnLink={'/aboutus'} btnMb={'80px'} />
                     </Row>
                 </Col>
                 <Col md={{ span: 4 }}>

@@ -26,7 +26,6 @@ export const createNewUser = (email, password) => {
                 const message = ''
                 dispatch(successCreate(success));
                 dispatch(aleartMessage(message));
-                console.log(res)
 
             })
             .catch(function (error) {

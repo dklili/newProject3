@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { domain } from '../../../setDomain';
-import { handleOrderInfo } from './orderActions';
 
-export const storeProductDetail = (value) => ({
-    type: 'storeProductDetail',
+
+export const storeCoffeeDetail = (value) => ({
+    type: 'storeCoffeeDetail',
     value
-});
+})
 
-export const handleProductDetail = () => {
+export const getCoffeList = () => {
     return dispatch => {
         axios.get(`${domain}/products`)
             .then(function (res) {
                 const data = res.data;
-                dispatch(storeProductDetail(data));
+                dispatch(storeCoffeeDetail(data));
 
             })
             .catch(function (error) {
@@ -21,14 +21,15 @@ export const handleProductDetail = () => {
     }
 }
 
-export const handleOrderData = (id) => {
+export const delectCoffeed = (id) => {
     return dispatch => {
-        axios.get(`${domain}/products/${id}`)
+        axios.delete(`${domain}/products/${id}`)
             .then(function (res) {
-                dispatch(handleOrderInfo(res.data.product))
+                dispatch(getCoffeList())
 
             })
             .catch(function (error) {
             });
+
     }
 }

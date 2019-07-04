@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddNewCoffee from './AddNewCoffee';
+import AddNewCoffee from './addNewCoffeeConnect';
 
 class AdminAddNewCoffee extends Component {
     render() {

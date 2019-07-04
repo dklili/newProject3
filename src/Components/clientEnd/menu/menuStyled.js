@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import topBackground from '../../../assets/menu-bg.jpg';
+import { Link } from 'react-router-dom';
 
 export const BackgroundWrapper = styled.div`
     height: 500px;
@@ -44,4 +45,29 @@ export const CoffeeItemHoverWrapper = styled.div`
 `
 export const PlaceHold = styled.div`
     height: 200px;
+`
+export const BlackBtn = styled.button`
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    border:1px solid black;
+    border-radius:3px;
+    background-color: black;
+    color: white;
+    margin:auto;
+    margin-top: 20px;
+    margin-bottom: ${props => props.mb};
+    transition: all 0.3s linear;
+    :hover{
+        background-color: gray;
+        color:black;
+        text-decoration:none;
+    
+    }
+`
+
+export const LinkWrapper = styled(Link)`
+    :hover{
+        text-decoration:none
+    }
 `

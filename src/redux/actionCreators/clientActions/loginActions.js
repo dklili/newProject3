@@ -40,7 +40,6 @@ export const handleLogin = (email, password) => {
                 dispatch(aleartMessage(message));
                 dispatch(setUserId(userId));
                 localStorage.setItem(data.userId, data.token);
-                console.log(localStorage.getItem(data.userId));
 
             })
             .catch(function (error) {

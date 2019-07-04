@@ -7,17 +7,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-import { WarnMessage, CoffeeForm, CommonDescribe, FormWrapper, FormTitleWrapper, FormTitle, SubmitBtn, CancelBtn } from './addNewCoffeeStyled'
+import { WarnMessage, CoffeeForm, CommonDescribe, FormWrapper, FormTitleWrapper, FormTitle, SubmitBtn, CancelBtn } from './updateCoffeeStyled'
 
 
 
-function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffeeName, handleCreateNewCoffee,
-    handleUploadFile, handleInputChange, }) {
-    if (successAddCoffee === true) {
-        return (
-            <Redirect to='/admin/coffee' />
-        )
-    }
+function UpdateCoffee({ }) {
+    // if (successAddCoffee === true) {
+    //     return (
+    //         <Redirect to='/admin/coffee' />
+    //     )
+    // }
     return (
         <Container fluid>
             <Row>
@@ -28,7 +27,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                     <Col md={{ offset: 1 }}>
                         <FormTitleWrapper>
                             <FormTitle>
-                                Add New Coffee
+                                Update Coffee
                             </FormTitle>
                         </FormTitleWrapper>
                     </Col>
@@ -37,7 +36,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                     <Form.Group as={Row} controlId="coffeeName">
                         <Col md={{ span: 2, offset: 1 }}>
                             <WarnMessage>
-                                {message}
+                                {/* {message} */}
                             </WarnMessage>
                         </Col>
                     </Form.Group>
@@ -48,7 +47,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             </CommonDescribe>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <CoffeeForm width={'300px'} name='coffeeName' placeholder="Coffee Name" onChange={handleInputChange} />
+                            <CoffeeForm width={'300px'} name='coffeeName' placeholder="Coffee Name" />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="coffeePrice">
@@ -58,7 +57,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             </CommonDescribe>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <CoffeeForm width={'300px'} name='coffeePrice' placeholder="Price" onChange={handleInputChange} />
+                            <CoffeeForm width={'300px'} name='coffeePrice' placeholder="Price" />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="coffeePicture">
@@ -68,7 +67,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             </CommonDescribe>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <input type="file" name="file" onChange={handleUploadFile} />
+                            <input type="file" name="file" />
                         </Col>
                     </Form.Group>
                     {/* <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
@@ -82,7 +81,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             <Link to='/admin/coffee'>
                                 <CancelBtn variant="danger"> Cancel</CancelBtn>
                             </Link>
-                            <SubmitBtn variant="primary" onClick={() => handleCreateNewCoffee(coffeeName, coffeePrice, imageUrl)}> Save</SubmitBtn>
+                            <SubmitBtn variant="primary" > Save</SubmitBtn>
 
                         </Col>
                     </Row>
@@ -93,4 +92,4 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
     )
 }
 
-export default AddNewCoffee;
+export default UpdateCoffee;

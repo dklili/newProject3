@@ -9,7 +9,7 @@ function ShareBlackBtn(props) {
     return (
         <BtnWrapper>
             <Link to={props.btnLink}>
-                <BlackBtn>{props.btnTitle}</BlackBtn>
+                <BlackBtn mb={props.btnMb}>{props.btnTitle}</BlackBtn>
             </Link>
         </BtnWrapper>
     )

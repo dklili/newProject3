@@ -8,8 +8,14 @@ export const TalbeHeader = styled.th`
     width: ${(props) => props.headerWidth};
 `
 export const TableData = styled.td`
-    height: 50px;
-    line-height:50px;
+`
+export const ProductImage = styled.div`
+    height: 150px;
+    width: 150px;
+    background-image: url('${props => props.url}');
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position:center;
 `
 export const AddBtn = styled(Button)`
     width: 150px;
@@ -18,4 +24,9 @@ export const AddBtn = styled(Button)`
 `
 export const EditBtn = styled(Button)`
     width: 150px;
+    margin-right: 20px;
+`
+export const DelectBtn = styled(Button)`
+    width: 150px;
+    margin-right: 20px;
 `

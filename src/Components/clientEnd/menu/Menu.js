@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +9,6 @@ import { domain } from '../../../setDomain';
 import ClientMenuBar from '../shareComponent/clientMenu/index';
 import ClientFooter from '../shareComponent/clientFooter/index';
 import ShareCoffeeItem from '../shareComponent/coffeeItem/index';
-import ShareBlackBtn from '../shareComponent/blackBtn/index';
 
 import {
     BackgroundWrapper,
@@ -16,11 +16,12 @@ import {
     SubTitle,
     CoffeeItemWrapper,
     CoffeeItemHoverWrapper,
-    PlaceHold
+    PlaceHold,
+    BlackBtn,
+    LinkWrapper
 } from './menuStyled';
 
-function MenuPage({ product }) {
-    // console.log(product)
+function MenuPage({ product, handleAddToCart }) {
     return (
 
         <Container fluid>
@@ -38,6 +39,7 @@ function MenuPage({ product }) {
                 </BackgroundWrapper>
             </Row>
             <Row>
+
                 {
                     product.map(item => {
                         return (
@@ -47,9 +49,16 @@ function MenuPage({ product }) {
                                         <ShareCoffeeItem coffeeImg={`${domain}/${item.productImage}`}
                                             coffeeName={item.name}
                                             coffeePrice={item.price} />
-                                        <Row>
-                                            <ShareBlackBtn btnTitle={'Add To Cart'} btnLink='/menu' />
-                                        </Row>
+                                        <LinkWrapper to='/order'>
+                                            <Row>
+                                                <BlackBtn
+                                                    onClick={() =>
+                                                        handleAddToCart(item._id)
+                                                    }
+                                                >Add To Cart</BlackBtn>
+
+                                            </Row>
+                                        </LinkWrapper>
                                     </CoffeeItemHoverWrapper>
                                 </CoffeeItemWrapper>
                             </Col>
