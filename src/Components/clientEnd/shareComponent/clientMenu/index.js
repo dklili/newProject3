@@ -5,6 +5,9 @@ import {
     NavbarWrapper, NavWrapper, NavbarBrandWrapper, NavLinkWrapper, NavLinkWrapperRight,
     FixWrapper
 } from './menuBarStyled';
+
+import { handleClearnOrderList } from '../../../../redux/actionCreators/clientActions/cartActions';
+import { setUserId } from '../../../../redux/actionCreators/clientActions/loginActions';
 import store from '../../../../redux/index';
 
 const Menu = (props) => {
@@ -18,7 +21,12 @@ const Menu = (props) => {
         const actionTypes = 'loginTitle';
         const value = 'login';
         const success = false;
-        localStorage.removeItem(store.userID)
+        const clearnUserId = '';
+        const clearnOrders = [];
+        const count = 0;
+        localStorage.removeItem(store.userID);
+        store.dispatch(handleClearnOrderList(clearnOrders, count))
+        store.dispatch(setUserId(clearnUserId))
         store.dispatch({
             type: actionTypes,
             value: value,

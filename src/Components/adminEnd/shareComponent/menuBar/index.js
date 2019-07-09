@@ -15,7 +15,6 @@ function AdminMenu(props) {
     const handleLogout = (address) => {
         const loginStatus = false;
         sessionStorage.removeItem('admin');
-        console.log(sessionStorage.getItem('admin'));
         store.dispatch(actionCreater.handleLoginStatus(loginStatus));
         props.history.push(address);
 

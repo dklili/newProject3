@@ -1,14 +1,14 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import Moment from 'react-moment';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
-import ProgressBar from 'react-bootstrap/ProgressBar';
 import AdminMenuBar from '../shareComponent/menuBar/index';
 
 import { ReadyBtn, TalbeHeader, TableData } from './bookingManagementStyled';
 
 
-function BookingManagement({ booking, handleStatusChange }) {
+function BookingManagement({ data, handleBookingStatusChange }) {
     return (
         <Container fluid>
             <Row>
@@ -18,54 +18,57 @@ function BookingManagement({ booking, handleStatusChange }) {
                 <Table striped bordered hover size="md">
                     <thead>
                         <tr>
-                            <TalbeHeader headerWidth={'150px'} >Order Time</TalbeHeader>
-                            <TalbeHeader headerWidth={'800px'}>Progress</TalbeHeader>
+                            <TalbeHeader headerWidth={'250px'} >Order Time</TalbeHeader>
                             <TalbeHeader headerWidth={'250px'}>Name</TalbeHeader>
-                            <TalbeHeader headerWidth={'200px'}>Phone Number</TalbeHeader>
                             <TalbeHeader headerWidth={'100px'}>Status </TalbeHeader>
                         </tr>
                     </thead>
                     <tbody>
-                        {booking.map(items => {
-                            if (items.status === "Panding") {
+                        {data.map(items => {
+                            if (items.status === 'Pending') {
                                 return (
-                                    <tr key={items.id}>
-                                        <TableData>{items.orderTime}</TableData>
-                                        <TableData><ProgressBar animated variant="warning" now={items.progress} style={{ marginTop: 18 }} /></TableData>
-                                        <TableData>{items.name}</TableData>
-                                        <TableData>{items.phoneNumber}</TableData>
+                                    <tr key={items._id}>
+                                        <TableData><Moment format="YYYY/MM/DD HH:mm">{items.date}</Moment></TableData>
+                                        <TableData>{items.product.name}</TableData>
                                         <TableData>
-                                            {items.status}
+                                            <ReadyBtn variant="warning" onClick={() => {
+                                                handleBookingStatusChange(items.status, items._id)
+                                            }}>
+                                                {items.status}
+                                            </ReadyBtn>
                                         </TableData>
                                     </tr>
                                 )
                             }
-                            if (items.status === "Ready") {
+                            else if (items.status === 'Ready')
                                 return (
-                                    <tr key={items.id}>
-                                        <TableData >{items.orderTime}</TableData>
-                                        <TableData><ProgressBar animated={false} now={items.progress} style={{ marginTop: 18 }} /></TableData>
-                                        <TableData>{items.name}</TableData>
-                                        <TableData>{items.phoneNumber}</TableData>
+                                    <tr key={items._id}>
+                                        <TableData><Moment format="YYYY/MM/DD HH:mm">{items.date}</Moment></TableData>
+                                        <TableData>{items.product.name}</TableData>
                                         <TableData>
-                                            <ReadyBtn onClick={() => handleStatusChange(items.id)}>{items.status}</ReadyBtn>
+                                            <ReadyBtn variant="success" onClick={() => {
+                                                handleBookingStatusChange(items.status, items._id)
+                                            }}>
+                                                {items.status}
+                                            </ReadyBtn>
                                         </TableData>
                                     </tr>
                                 )
-                            }
-                            else return (
-                                (
-                                    <tr key={items.id}>
-                                        <TableData >{items.orderTime}</TableData>
-                                        <TableData><ProgressBar animated={false} variant="success" now={items.progress} style={{ marginTop: 18 }} /></TableData>
-                                        <TableData>{items.name}</TableData>
-                                        <TableData>{items.phoneNumber}</TableData>
+                            else if (items.status === 'Collected')
+                                return (
+                                    <tr key={items._id}>
+                                        <TableData><Moment format="YYYY/MM/DD HH:mm">{items.date}</Moment></TableData>
+                                        <TableData>{items.product.name}</TableData>
                                         <TableData>
-                                            {items.status}
+                                            <ReadyBtn variant="danger" onClick={() => {
+                                                handleBookingStatusChange(items.status, items._id)
+                                            }}>
+                                                {items.status}
+                                            </ReadyBtn>
                                         </TableData>
                                     </tr>
                                 )
-                            )
+                            else return null;
                         })}
                     </tbody>
                 </Table>

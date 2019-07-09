@@ -13,7 +13,7 @@ import {
 } from './coffeeManagementStyled';
 
 
-function CoffeeManagement({ data, handleDeleteCoffee }) {
+function CoffeeManagement({ data, handleDeleteCoffee, handleUpdateCoffee }) {
     return (
         <Container fluid>
             <Row>
@@ -41,7 +41,7 @@ function CoffeeManagement({ data, handleDeleteCoffee }) {
                             {
                                 data.map((item) => {
                                     return (
-                                        <tr key = {item._id}>
+                                        <tr key={item._id}>
                                             <TableData>{item.name}</TableData>
                                             <TableData>{item.price}</TableData>
                                             <TableData>
@@ -49,11 +49,15 @@ function CoffeeManagement({ data, handleDeleteCoffee }) {
                                             </TableData>
                                             <TableData>
                                                 <Link to='/admin/coffee/updateCoffee'>
-                                                    <EditBtn>Edit</EditBtn>
+                                                    <EditBtn onClick={
+                                                        () => {
+                                                            handleUpdateCoffee(item._id)
+                                                        }
+                                                    }>Edit</EditBtn>
                                                 </Link>
                                                 <DelectBtn variant="danger" onClick={
                                                     () => {
-                                                        handleDeleteCoffee(item._id,item.name)
+                                                        handleDeleteCoffee(item._id, item.name)
                                                     }
                                                 }>Delete</DelectBtn>
                                             </TableData>

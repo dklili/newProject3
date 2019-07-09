@@ -3,7 +3,9 @@ const defaultState = {
     number: 1,
     name: '',
     price: '',
-    imageUrl: ''
+    productID: '',
+    imageUrl: '',
+    successCreateOrder: false
 }
 
 
@@ -14,8 +16,11 @@ export default (state = defaultState, action) => {
         case 'handleOrderInfo':
             return {
                 ...state, name: action.value.name, price: action.value.price,
+                productID: action.value._id,
                 imageUrl: action.value.productImage
             }
+        case 'handleSuccessCreateOrder':
+            return { ...state, successCreateOrder: action.value }
         default:
             return state;
     }

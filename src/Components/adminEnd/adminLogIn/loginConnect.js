@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             const loginStatus = true;
             const loginToken = 'loginTokenTrue'
             sessionStorage.setItem('admin', loginToken);
-            console.log(sessionStorage.getItem('admin'))
             dispatch(actionCreater.handleLoginStatus(loginStatus));
         }
     }

@@ -4,7 +4,7 @@ const defaultState = {
     coffeePrice: '',
     imageUrl: '',
     message: '',
-    successAddCoffee:false
+    successAddCoffee: false
 }
 
 
@@ -17,7 +17,9 @@ export default (state = defaultState, action) => {
         case 'handleAddCoffeeMessage':
             return { ...state, message: action.value }
         case 'handleSuccessAddCoffee':
-            return  {...state, successAddCoffee: action.value}
+            return { ...state, successAddCoffee: action.value }
+        case 'handleClearAddCoffeeData':
+            return { ...state, coffeeName: action.data.name, coffeePrice: action.data.price }
         default:
             return state;
     }

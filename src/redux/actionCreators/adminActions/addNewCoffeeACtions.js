@@ -38,10 +38,11 @@ export const createNewCoffee = (coffeeName, coffeePrice, imageUrl) => {
                 dispatch(handleSuccessAddCoffee(value))
             })
             .catch(function (error) {
-                if (error.response.request.status === 500) {
-                    const message = 'Please Enter The Correct Price'
-                    dispatch(handleAddCoffeeMessage(message))
-                }
+                console.log(error)
             });
     }
 }
+export const handleClearAddCoffeeData = (data) => ({
+    type: 'handleClearAddCoffeeData',
+    data
+})

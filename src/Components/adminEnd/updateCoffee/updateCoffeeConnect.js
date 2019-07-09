@@ -3,42 +3,44 @@ import UpdateCoffee from './UpdateCoffee';
 import * as actionCreater from '../../../redux/actionCreators/adminActions/updateCoffeeActions';
 
 const mapStateToProps = (state, ownProps) => ({
-    coffeeName: state.addNewCoffeeReducer.coffeeName,
-    coffeePrice: state.addNewCoffeeReducer.coffeePrice,
-    imageUrl: state.addNewCoffeeReducer.imageUrl,
-    message: state.addNewCoffeeReducer.message,
-    successAddCoffee: state.addNewCoffeeReducer.successAddCoffee
+    coffeeName: state.updateCoffeeReducer.coffeeName,
+    coffeePrice: state.updateCoffeeReducer.coffeePrice,
+    imageUrl: state.updateCoffeeReducer.imageUrl,
+    message: state.updateCoffeeReducer.message,
+    id: state.updateCoffeeReducer.id,
+    successUpdate: state.updateCoffeeReducer.successUpdate
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    handleUploadFile: (e) => {
-        const img = e.target.files[0]
-        dispatch(actionCreater.storeImg(img))
-    },
-    handleInputChange: (e) => {
+    handleValueChange: (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        dispatch(actionCreater.handleInputvalue(name, value))
+        dispatch(actionCreater.valueChange(name, value))
     },
-    handleCreateNewCoffee: (coffeeName, coffeePrice, imageUrl) => {
+    handleUploadFile: (e) => {
+        const img = e.target.files[0]
+        dispatch(actionCreater.updateImg(img))
+    },
+    handleUpdateCoffee: (coffeeName, coffeePrice, imageUrl, id) => {
         if (coffeeName === '') {
             const message = 'Please Enter Coffee Name';
-            dispatch(actionCreater.handleAddCoffeeMessage(message))
+            dispatch(actionCreater.handleUpdateCoffeeMessage(message))
 
         }
         else if (coffeePrice === '') {
             const message = 'Please Enter Coffee Price';
-            dispatch(actionCreater.handleAddCoffeeMessage(message))
+            dispatch(actionCreater.handleUpdateCoffeeMessage(message))
 
         }
         else if (imageUrl === '') {
             const message = 'Please Chooce the Coffee Image';
-            dispatch(actionCreater.handleAddCoffeeMessage(message))
+            dispatch(actionCreater.handleUpdateCoffeeMessage(message))
         }
         else {
-            dispatch(actionCreater.createNewCoffee(coffeeName, coffeePrice, imageUrl))
+            dispatch(actionCreater.upDateCoffee(coffeeName, coffeePrice, imageUrl, id))
         }
     }
+
 })
 
 export default connect(

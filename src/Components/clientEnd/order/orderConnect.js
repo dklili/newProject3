@@ -7,7 +7,10 @@ const mapStateToProps = (state, ownProps) => ({
     number: state.orderReducer.number,
     name: state.orderReducer.name,
     price: state.orderReducer.price,
-    imageUrl: state.orderReducer.imageUrl
+    imageUrl: state.orderReducer.imageUrl,
+    userID: state.loginReducer.userID,
+    productID: state.orderReducer.productID,
+    successCreateOrder: state.orderReducer.successCreateOrder
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -25,6 +28,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             dispatch(actionCreater.handleNewNumber(newNumber));
         }
 
+    },
+    handleSubmiteOrder: (number, userID, productID) => {
+        dispatch(actionCreater.submiteOrder(number, userID, productID))
     }
 })
 

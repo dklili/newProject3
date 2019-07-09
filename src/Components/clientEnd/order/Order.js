@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { domain } from '../../../setDomain';
+import { Redirect } from 'react-router-dom';
 
 import { ImgWrapper, OrderTitle, GrayBtn, BtnWrapper, BlackBtn } from './orderStyled';
 
@@ -12,7 +13,18 @@ import { ImgWrapper, OrderTitle, GrayBtn, BtnWrapper, BlackBtn } from './orderSt
 import ClientMenuBar from '../shareComponent/clientMenu/index';
 import ClientFooter from '../shareComponent/clientFooter/index';
 
-function MenuPage({ imageUrl, name, price, number, handleOrderIncrease, handleOrderDecrease }) {
+function MenuPage({ imageUrl, name, price, number, userID, productID, successCreateOrder,
+    handleOrderIncrease, handleOrderDecrease, handleSubmiteOrder }) {
+    if (userID === '') {
+        return (
+            <Redirect to='/login' />
+        )
+    }
+    else if (successCreateOrder === true) {
+        return (
+            <Redirect to='/cart' />
+        )
+    }
     return (
 
         <Container fluid>
@@ -59,7 +71,9 @@ function MenuPage({ imageUrl, name, price, number, handleOrderIncrease, handleOr
                     <Row>
                         <Col md={2}>
                             <BtnWrapper>
-                                <BlackBtn>Submit</BlackBtn>
+                                <BlackBtn
+                                    onClick={() => handleSubmiteOrder(number, userID, productID)}
+                                >Submit</BlackBtn>
                             </BtnWrapper>
                         </Col>
                     </Row>
