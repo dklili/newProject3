@@ -12,7 +12,7 @@ import {
 } from './homePageStyled';
 
 
-function Homepage() {
+function Homepage({ bookingCount, userNumber, coffeeNumber }) {
     return (
         <Container fluid>
             <Row>
@@ -26,7 +26,7 @@ function Homepage() {
                                 <BookingIcon />
                             </IcoWrapper>
                             <CommonTitle>Booking</CommonTitle>
-                            <CommonDescribe>Current Booking Number:28</CommonDescribe>
+                            <CommonDescribe>Current Booking Number:{bookingCount}</CommonDescribe>
                         </SectionWrapper>
                     </RouterLink>
                 </Col>
@@ -37,7 +37,7 @@ function Homepage() {
                                 <CustomerIcon />
                             </IcoWrapper>
                             <CommonTitle>Customer Management</CommonTitle>
-                            <CommonDescribe>Current Customer Number:299</CommonDescribe>
+                            <CommonDescribe>Current Customer Number:{userNumber}</CommonDescribe>
                         </SectionWrapper>
                     </RouterLink>
                 </Col>
@@ -48,7 +48,7 @@ function Homepage() {
                                 <CoffeeIcon />
                             </IcoWrapper>
                             <CommonTitle>Coffee Management</CommonTitle>
-                            <CommonDescribe>Current Coffee Number:20</CommonDescribe>
+                            <CommonDescribe>Current Coffee Number:{coffeeNumber}</CommonDescribe>
                         </SectionWrapper>
                     </RouterLink>
                 </Col>

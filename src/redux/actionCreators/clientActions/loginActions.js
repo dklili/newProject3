@@ -24,8 +24,8 @@ export const setUserId = (value) => ({
 })
 
 export const handleLogin = (email, password) => {
-    return async dispatch => {
-        await axios.post(`${domain}/user/login`, {
+    return dispatch => {
+        axios.post(`${domain}/user/login`, {
             email: email,
             password: password
         })
@@ -39,8 +39,7 @@ export const handleLogin = (email, password) => {
                 dispatch(successLogin(success));
                 dispatch(aleartMessage(message));
                 dispatch(setUserId(userId));
-                localStorage.setItem(data.userId, data.token);
-                console.log(localStorage.getItem(data.userId));
+                localStorage.setItem('token', data.token);
 
             })
             .catch(function (error) {

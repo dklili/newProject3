@@ -25,6 +25,12 @@ export const LoginTitle = styled.h2`
     padding-bottom:50px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 `
+export const LoginWarningMessage = styled.h2`
+    font-size:15px;
+    color:red;
+    text-align:center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+`
 export const InputDescribe = styled.h3`
     font-size:19px;
     margin-left:150px;

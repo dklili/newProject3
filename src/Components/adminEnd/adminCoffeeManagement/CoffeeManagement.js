@@ -5,11 +5,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import AdminMenuBar from '../shareComponent/menuBar/index';
+import { domain } from '../../../setDomain';
 
-import { AddBtn, BtnWrapper, TalbeHeader, TableData, EditBtn } from './coffeeManagementStyled';
+import {
+    AddBtn, BtnWrapper, TalbeHeader, TableData,
+    EditBtn, DelectBtn, ProductImage
+} from './coffeeManagementStyled';
 
 
-function CoffeeManagement() {
+function CoffeeManagement({ data, handleDeleteCoffee, handleUpdateCoffee }) {
     return (
         <Container fluid>
             <Row>
@@ -27,47 +31,41 @@ function CoffeeManagement() {
                     <Table striped bordered hover size="md">
                         <thead>
                             <tr>
-                                <TalbeHeader headerWidth={'150px'} >Coffee Name</TalbeHeader>
-                                <TalbeHeader headerWidth={'150px'}>Price</TalbeHeader>
-                                <TalbeHeader headerWidth={'150px'}>Place Of Origin</TalbeHeader>
-                                <TalbeHeader headerWidth={'800px'}>Describe</TalbeHeader>
-                                <TalbeHeader headerWidth={'100px'}>Status</TalbeHeader>
+                                <TalbeHeader headerWidth={'300px'} >Coffee Name</TalbeHeader>
+                                <TalbeHeader headerWidth={'300px'}>Price</TalbeHeader>
+                                <TalbeHeader headerWidth={'300px'}>Image</TalbeHeader>
+                                <TalbeHeader headerWidth={'50px'}>Edit</TalbeHeader>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <TableData>Long Black</TableData>
-                                <TableData>5.5</TableData>
-                                <TableData>Australia</TableData>
-                                <TableData>This is a long text to describe the detail of the Long Black</TableData>
-                                <TableData>
-                                    <Link to='/admin/coffee/addCoffee'>
-                                        <EditBtn>Edit</EditBtn>
-                                    </Link>
-                                </TableData>
-                            </tr>
-                            <tr>
-                                <TableData>Flat White</TableData>
-                                <TableData>5.5</TableData>
-                                <TableData>American</TableData>
-                                <TableData>This is a long text to describe the detail of the Flat White</TableData>
-                                <TableData>
-                                    <Link to='/admin/coffee/addCoffee'>
-                                        <EditBtn>Edit</EditBtn>
-                                    </Link>
-                                </TableData>
-                            </tr>
-                            <tr>
-                                <TableData >Cappuccino</TableData>
-                                <TableData>6</TableData>
-                                <TableData>China</TableData>
-                                <TableData>This is a long text to describe the detail of the Cappuccino</TableData>
-                                <TableData>
-                                    <Link to='/admin/coffee/addCoffee'>
-                                        <EditBtn>Edit</EditBtn>
-                                    </Link>
-                                </TableData>
-                            </tr>
+                            {
+                                data.map((item) => {
+                                    return (
+                                        <tr key={item._id}>
+                                            <TableData>{item.name}</TableData>
+                                            <TableData>{item.price}</TableData>
+                                            <TableData>
+                                                <ProductImage url={`${domain}/${item.productImage}`} />
+                                            </TableData>
+                                            <TableData>
+                                                <Link to='/admin/coffee/updateCoffee'>
+                                                    <EditBtn onClick={
+                                                        () => {
+                                                            handleUpdateCoffee(item._id)
+                                                        }
+                                                    }>Edit</EditBtn>
+                                                </Link>
+                                                <DelectBtn variant="danger" onClick={
+                                                    () => {
+                                                        handleDeleteCoffee(item._id, item.name)
+                                                    }
+                                                }>Delete</DelectBtn>
+                                            </TableData>
+                                        </tr>
+                                    )
+                                })
+                            }
+
                         </tbody>
                     </Table>
                 </Col>

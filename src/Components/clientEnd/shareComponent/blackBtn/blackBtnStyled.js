@@ -8,7 +8,7 @@ export const BlackBtn = styled.button`
     background-color: black;
     color: white;
     margin-top: 20px;
-    margin-bottom: 80px;
+    margin-bottom: ${props => props.mb};
     transition: all 0.3s linear;
     :hover{
         background-color: gray;

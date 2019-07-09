@@ -11,7 +11,7 @@ function ShareCoffeeItem(props) {
             </SubTitle>
             <Line width={'50px'}></Line>
             <CoffeePrice>
-                {props.coffeePrice}
+                ${props.coffeePrice}
             </CoffeePrice>
         </div>
     )

@@ -1,160 +1,91 @@
 import React from 'react';
-import styled from 'styled-components';
-import NavBar from './NavBar.js';
-import { Row, Image, Button } from 'react-bootstrap';
 
-const OuterDiv = styled.div`
-    background-color: #E8E8E8;
-    margin-top: 2rem;
-    width: 82rem;
-    height: 37rem;
-`
 
-const NewDiv1 = styled.div`
-    height: 30rem;
-    margin-top: 2.5rem;
-    width: 41rem;
-`
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { domain } from '../../../setDomain';
+import { Redirect } from 'react-router-dom';
 
-const NewDiv2 = styled.div`
-    height: 25rem;
-    margin-top: 4rem;
-    margin-left: 11rem;
-    width: 19rem;
-`
+import { ImgWrapper, OrderTitle, GrayBtn, BtnWrapper, BlackBtn } from './orderStyled';
 
-const OrderImage = styled(Image)`
-    margin-top: 0.5rem;
-    width: 28rem;
-    height: 31rem;
-    object-fit: cover;
-`
+//import component part
+import ClientMenuBar from '../shareComponent/clientMenu/index';
+import ClientFooter from '../shareComponent/clientFooter/index';
 
-const OrderBrandName = styled.div`
-    text-align: left;
-    width: 10rem;
-    height: 2rem;
-`
-
-const OrderPrice = styled.div`
-    text-align: left;
-    width: 10rem;
-    height: 1rem;
-    margin-top: 1rem;
-`
-
-const OrderDesp = styled.div`
-    text-align: left;
-    width: 18rem;
-    height: 9.5rem;
-    margin-top: 1.5rem;
-`
-
-const DelBtn = styled(Button)`
-    margin-left: 1rem;
-    width: 4rem;
-    height: 4rem;
-`
-
-const AddBtn = styled(Button)`
-    margin-left: 3rem;
-    width: 4rem;
-    height: 4rem;
-`
-
-const Number = styled.div`
-    margin-top: 0.5rem;
-    margin-left: 3rem;
-    width: 4rem;
-    height: 4rem;
-`
-
-const InnerDiv = styled.div`
-    text-align: left;
-    margin-top: 1rem;
-    margin-left: 5.5rem;
-`
-
-const OrderBtn = styled(Button)`
-    margin-left: 11.5rem;
-    width: 6rem;
-    height: 2.5rem;
-    margin-top: 3rem;
-`
-
-class Order extends React.Component {
-
-    state = {
-        cupsNumber: 1,
-    }
-
-    handleIncrement = (e) => {
-        e.preventDefault();
-        this.setState({
-            cupsNumber: this.state.cupsNumber + 1
-        })
-    }
-
-    handleDecrement = (e) => {
-        e.preventDefault();
-        if (this.state.cupsNumber > 1) {
-            this.setState({
-                cupsNumber: this.state.cupsNumber - 1
-            })
-        } else {
-            this.setState({
-                cupsNumber: this.state.cupsNumber
-            })
-        }
-    }
-
-    render() {
+function MenuPage({ imageUrl, name, price, number, userID, productID, successCreateOrder,
+    handleOrderIncrease, handleOrderDecrease, handleSubmiteOrder }) {
+    if (userID === '') {
         return (
-            <div>
-            <NavBar />
-                <OuterDiv>
-                <Row>
-                    <NewDiv1>
-                        <OrderImage key={2} src={require(""+"./images/cafe-latte.jpg")} />
-                    </NewDiv1>
-                    <NewDiv2>
-                        <OrderBrandName classname="text-dark order-brandName">
-                            <h3>Cafe Latte</h3>
-                        </OrderBrandName>
-                        <OrderPrice classname="text-dark order-price">
-                            <h6>Price: $5</h6>
-                        </OrderPrice>
-                        <OrderDesp classname="text-dark order-description">
-                            <p>Descroption: 
-                                <br/>
-                                <br/>
-                            </p>
-                        </OrderDesp>
-                        <Row>
-                            <DelBtn variant="secondary" onClick={(e) => this.handleDecrement(e)}>
-                                <h1>-</h1>
-                            </DelBtn>
-                            <Number>
-                                <h1><b>{this.state.cupsNumber}</b></h1>
-                            </Number>
-                            <AddBtn variant="secondary" onClick={(e) => this.handleIncrement(e)}>
-                                <h1>+</h1>
-                            </AddBtn>
-                        </Row>
-                        <InnerDiv>
-                            <h5>Totol Price: $</h5>
-                        </InnerDiv>
-                        <OrderBtn variant="dark">
-                            <p>Submit</p>
-                        </OrderBtn>
-    
-                    </NewDiv2>
-                    </Row>
-                </OuterDiv>
-            </div>
-        )  
+            <Redirect to='/login' />
+        )
     }
-   
+    else if (successCreateOrder === true) {
+        return (
+            <Redirect to='/cart' />
+        )
+    }
+    return (
+
+        <Container fluid>
+            <Row>
+                <ClientMenuBar />
+            </Row>
+            <Row>
+                <Col md={6}>
+
+                    <ImgWrapper bgImg={`${domain}/${imageUrl}`} ></ImgWrapper>
+                </Col>
+                <Col md={6}>
+                    <OrderTitle mt='11rem' fs='4rem'>
+                        {name}
+                    </OrderTitle>
+                    <OrderTitle mt='2rem' fs='2rem'>
+                        Price: ${price}
+                    </OrderTitle>
+                    <OrderTitle mt='2rem' fs='2rem'>
+                        Number:
+                    </OrderTitle>
+                    <Row>
+                        <Col md={2}>
+
+                            <BtnWrapper>
+                                <GrayBtn onClick={() =>
+                                    handleOrderDecrease(number)
+                                }>-</GrayBtn>
+                            </BtnWrapper>
+                        </Col>
+                        <Col md={2}>
+                            <OrderTitle mt='6rem' fs='2rem' ta='center'>
+                                {number}
+                            </OrderTitle>
+                        </Col>
+                        <Col md={2}>
+                            <BtnWrapper>
+                                <GrayBtn onClick={() =>
+                                    handleOrderIncrease(number)
+                                }>+</GrayBtn>
+                            </BtnWrapper>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={2}>
+                            <BtnWrapper>
+                                <BlackBtn
+                                    onClick={() => handleSubmiteOrder(number, userID, productID)}
+                                >Submit</BlackBtn>
+                            </BtnWrapper>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row>
+                <ClientFooter />
+            </Row>
+
+        </Container >
+
+    )
 }
 
-export default Order
+export default MenuPage;

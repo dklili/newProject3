@@ -7,13 +7,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-import { WarnMessage, CoffeeForm, CommonDescribe, FormWrapper, FormTitleWrapper, FormTitle, SubmitBtn, CancelBtn } from './addNewCoffeeStyled'
+import {
+    WarnMessage, CoffeeForm,
+    CommonDescribe, FormWrapper,
+    FormTitleWrapper, FormTitle,
+    SubmitBtn, CancelBtn
+} from './updateCoffeeStyled'
 
 
 
-function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffeeName, handleCreateNewCoffee,
-    handleUploadFile, handleInputChange, }) {
-    if (successAddCoffee === true) {
+function UpdateCoffee({ coffeeName, coffeePrice,
+    imageUrl, message, id, handleValueChange,
+    handleUploadFile, handleUpdateCoffee, successUpdate }) {
+    if (successUpdate === true) {
         return (
             <Redirect to='/admin/coffee' />
         )
@@ -28,7 +34,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                     <Col md={{ offset: 1 }}>
                         <FormTitleWrapper>
                             <FormTitle>
-                                Add New Coffee
+                                Update Coffee
                             </FormTitle>
                         </FormTitleWrapper>
                     </Col>
@@ -48,7 +54,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             </CommonDescribe>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <CoffeeForm width={'300px'} name='coffeeName' placeholder="Coffee Name" onChange={handleInputChange} />
+                            <CoffeeForm width={'300px'} name='coffeeName' placeholder="Coffee Name" value={coffeeName} onChange={handleValueChange} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="coffeePrice">
@@ -58,7 +64,7 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             </CommonDescribe>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <CoffeeForm width={'300px'} name='coffeePrice' placeholder="Price" onChange={handleInputChange} />
+                            <CoffeeForm width={'300px'} name='coffeePrice' placeholder="Price" value={coffeePrice} onChange={handleValueChange} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="coffeePicture">
@@ -71,18 +77,13 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
                             <input type="file" name="file" onChange={handleUploadFile} />
                         </Col>
                     </Form.Group>
-                    {/* <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
-                        <Col md={{ span: 8, offset: 1 }}>
-                            <CommonDescribe>Coffee Describe;</CommonDescribe>
-                            <Form.Control as="textarea" rows="5" />
-                        </Col>
-                    </Form.Group> */}
                     <Row>
                         <Col md={{ span: 8, offset: 1 }}>
                             <Link to='/admin/coffee'>
                                 <CancelBtn variant="danger"> Cancel</CancelBtn>
                             </Link>
-                            <SubmitBtn variant="primary" onClick={() => handleCreateNewCoffee(coffeeName, coffeePrice, imageUrl)}> Save</SubmitBtn>
+                            <SubmitBtn variant="primary" onClick={() => handleUpdateCoffee(coffeeName, coffeePrice, imageUrl, id)}>
+                                Save</SubmitBtn>
 
                         </Col>
                     </Row>
@@ -93,4 +94,4 @@ function AddNewCoffee({ successAddCoffee, imageUrl, message, coffeePrice, coffee
     )
 }
 
-export default AddNewCoffee;
+export default UpdateCoffee;
